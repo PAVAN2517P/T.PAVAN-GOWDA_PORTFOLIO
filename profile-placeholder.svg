@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" fill="#1e1b4b" />
+  
+  <!-- Subtle pixel grid -->
+  <defs>
+    <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill="none" stroke="#2e2a72" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="200" height="200" fill="url(#grid)" opacity="0.4" />
+
+  <!-- Pixelated Software Engineer Character -->
+  <g shape-rendering="crispEdges">
+    <!-- Hair -->
+    <rect x="70" y="30" width="60" height="20" fill="#18181b" />
+    <rect x="60" y="40" width="80" height="30" fill="#18181b" />
+    <rect x="50" y="60" width="20" height="30" fill="#18181b" />
+    <rect x="130" y="60" width="20" height="30" fill="#18181b" />
+
+    <!-- Head / Face -->
+    <rect x="70" y="50" width="60" height="60" fill="#fcd34d" />
+    
+    <!-- Headphones / Tech headset -->
+    <rect x="50" y="60" width="15" height="35" fill="#ef4444" />
+    <rect x="135" y="60" width="15" height="35" fill="#ef4444" />
+    <rect x="60" y="25" width="80" height="8" fill="#ef4444" />
+
+    <!-- Pixel Glasses / Eyes -->
+    <rect x="75" y="70" width="20" height="15" fill="#1e293b" />
+    <rect x="105" y="70" width="20" height="15" fill="#1e293b" />
+    <rect x="95" y="75" width="10" height="5" fill="#1e293b" />
+    <!-- Glasses Glint -->
+    <rect x="78" y="72" width="6" height="5" fill="#38bdf8" />
+    <rect x="108" y="72" width="6" height="5" fill="#38bdf8" />
+
+    <!-- Smile -->
+    <rect x="90" y="95" width="20" height="5" fill="#92400e" />
+
+    <!-- Neck -->
+    <rect x="85" y="110" width="30" height="15" fill="#f59e0b" />
+
+    <!-- Hoodie / Shoulders -->
+    <rect x="45" y="125" width="110" height="75" fill="#4338ca" />
+    <!-- Hoodie Strings / Collar -->
+    <polygon points="100,125 80,150 120,150" fill="#312e81" />
+    <rect x="85" y="145" width="6" height="30" fill="#ffffff" />
+    <rect x="109" y="145" width="6" height="30" fill="#ffffff" />
+    
+    <!-- Code symbol badge on hoodie -->
+    <rect x="92" y="165" width="16" height="16" fill="#10b981" />
+    <rect x="96" y="169" width="8" height="8" fill="#ffffff" />
+  </g>
+
+  <!-- Pixel Border -->
+  <rect x="0" y="0" width="200" height="200" fill="none" stroke="#6366f1" stroke-width="8" />
+</svg>

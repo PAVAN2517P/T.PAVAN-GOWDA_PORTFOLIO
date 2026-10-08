@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of T. Pavan Gowda - Electronics & Communication Engineering Student, Embedded Systems & IoT Enthusiast." />
+  <title>T. Pavan Gowda | ECE & Embedded Systems Portfolio</title>
+  
+  <!-- Pixel Art Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Scanline / CRT overlay for authentic retro feel -->
+  <div class="crt-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================= -->
+  <!-- HEADER & NAVIGATION -->
+  <!-- ========================================================================= -->
+  <header class="pixel-header">
+    <div class="header-container">
+      <a href="#hero" class="pixel-brand">
+        <span class="pixel-icon">⚡</span>
+        <span class="brand-text">PAVAN.ECE</span>
+      </a>
+
+      <nav class="pixel-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#timeline" class="nav-link">Timeline</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- ===================================================================== -->
+      <!-- PLACEHOLDER: NIGHT MODE TOGGLE -->
+      <!-- Detects system preference via CSS media queries + interactive manual toggle -->
+      <!-- ===================================================================== -->
+      <div class="theme-toggle-wrapper">
+        <button id="themeToggleBtn" class="pixel-btn theme-toggle-btn" aria-label="Toggle Night/Day Mode" title="Toggle theme">
+          <span class="theme-icon" id="themeIcon">🌓</span>
+          <span class="theme-label" id="themeText">MODE</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- MAIN CONTENT -->
+  <!-- ========================================================================= -->
+  <main>
+    <!-- ======================================================================= -->
+    <!-- 1. HERO SECTION (Pixel Art Style with PROFILE.JPEG & Resume Details) -->
+    <!-- ======================================================================= -->
+    <section id="hero" class="pixel-hero" aria-labelledby="hero-title">
+      <div class="hero-backdrop"></div>
+      
+      <div class="hero-container">
+        <!-- Retro Status HUD Banner -->
+        <div class="retro-hud">
+          <span class="hud-item"><span class="hud-label">PLAYER:</span> T. PAVAN GOWDA</span>
+          <span class="hud-item"><span class="hud-label">CLASS:</span> ECE & EMBEDDED SYSTEMS</span>
+          <span class="hud-item status-live"><span class="hud-dot"></span> SEEKING INTERNSHIP</span>
+        </div>
+
+        <div class="hero-grid">
+          <div class="hero-content">
+            <p class="hero-greeting">🎮 WELCOME TO MY PORTFOLIO</p>
+            <h1 id="hero-title" class="hero-title">
+              HELLO WORLD,<br>
+              I'M <span class="highlight">T. PAVAN GOWDA</span>
+            </h1>
+            
+            <p class="hero-tagline">
+              Electronics & Communication Engineering student passionate about embedded systems, IoT, microcontroller programming, and hardware-software integration.
+            </p>
+
+            <div class="hero-badges">
+              <span class="pixel-badge"><span class="badge-icon">⚡</span> ESP32 & IoT</span>
+              <span class="pixel-badge"><span class="badge-icon">🛠️</span> C & Python</span>
+              <span class="pixel-badge"><span class="badge-icon">🔌</span> Circuit Analysis</span>
+              <span class="pixel-badge"><span class="badge-icon">📍</span> Karnataka, India</span>
+            </div>
+
+            <!-- Call to Action Buttons -->
+            <div class="hero-actions">
+              <a href="#projects" class="pixel-btn pixel-btn-primary">
+                <span>[ VIEW PROJECTS ]</span>
+              </a>
+              <a href="#contact" class="pixel-btn pixel-btn-secondary">
+                <span>[ GET IN TOUCH ]</span>
+              </a>
+              <a href="#timeline" class="pixel-btn pixel-btn-ghost">
+                <span>[ EDUCATION ]</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Pixel Character / Terminal Avatar Frame with PROFILE.JPEG -->
+          <div class="hero-visual">
+            <div class="pixel-frame">
+              <div class="frame-header">
+                <span class="window-dot red"></span>
+                <span class="window-dot yellow"></span>
+                <span class="window-dot green"></span>
+                <span class="frame-title">pavan_profile.exe</span>
+              </div>
+              <div class="frame-body">
+                <div class="pixel-avatar-wrapper">
+                  <div class="avatar-photo-frame">
+                    <img 
+                      src="PROFILE.JPEG" 
+                      alt="T. Pavan Gowda - Profile Photo" 
+                      class="pixel-avatar-img" 
+                      id="profilePhoto"
+                      onerror="if (this.src.indexOf('profile.jpg') === -1) { this.src='profile.jpg'; } else if (this.src.indexOf('profile-placeholder.svg') === -1) { this.src='profile-placeholder.svg'; }"
+                    />
+                    <div class="photo-scanline-glint" aria-hidden="true"></div>
+                  </div>
+                  <div class="avatar-caption">
+                    <span class="avatar-tag">LVL 2029 ECE</span>
+                    <span class="avatar-name">T. PAVAN GOWDA</span>
+                  </div>
+                </div>
+
+                <div class="terminal-stats">
+                  <div class="stat-row">
+                    <span class="stat-name">EMBEDDED:</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 88%;"></div></div>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-name">C/PYTHON:</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 85%;"></div></div>
+                  </div>
+                  <div class="stat-row">
+                    <span class="stat-name">CIRCUITS:</span>
+                    <div class="stat-bar"><div class="stat-fill" style="width: 90%;"></div></div>
+                  </div>
+                </div>
+                <p class="terminal-prompt">> Ready to build smart embedded solutions_</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 2. ABOUT SECTION (Career Objective, Academic Background & Strengths) -->
+    <!-- ======================================================================= -->
+    <!-- 
+      PLACEHOLDER: About Section
+      Contains career objective, university details, core interests, 
+      and coursework from T. Pavan Gowda's resume.
+    -->
+    <section id="about" class="pixel-section">
+      <div class="section-container">
+        <h2 class="section-title"><span class="title-bracket">&lt;</span> ABOUT ME <span class="title-bracket">&gt;</span></h2>
+        
+        <div class="about-grid">
+          <div class="pixel-card about-main-card">
+            <h3 class="card-title">🎯 CAREER OBJECTIVE</h3>
+            <p class="card-text">
+              Motivated <strong>Electronics & Communication Engineering</strong> student seeking an internship to apply fundamentals of electronics, embedded systems, and programming while gaining practical industry experience. Interested in building reliable hardware-software projects and developing strong engineering problem-solving skills.
+            </p>
+            <div class="contact-quick-pills">
+              <span class="pill-item">📞 <strong>Phone:</strong> 8277740580</span>
+              <span class="pill-item">✉️ <strong>Email:</strong> pavan.t2517p@gmail.com</span>
+              <span class="pill-item">📍 <strong>Location:</strong> Karnataka, India</span>
+            </div>
+          </div>
+
+          <div class="pixel-card about-sub-card">
+            <h3 class="card-title">⚡ KEY STRENGTHS</h3>
+            <ul class="pixel-list">
+              <li><span>👾</span> <strong>Problem Solving & Analytical Thinking:</strong> Keen attention to structural circuit and logic challenges.</li>
+              <li><span>🚀</span> <strong>Quick Learner:</strong> Passionate exploration of embedded systems, microcontrollers, and modern IoT.</li>
+              <li><span>🤝</span> <strong>Teamwork & Project-Oriented:</strong> Dedicated to collaborative development and learning emerging technologies.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Relevant Coursework Banner -->
+        <div class="coursework-box">
+          <h4 class="coursework-title">📚 RELEVANT COURSEWORK:</h4>
+          <div class="coursework-tags">
+            <span class="coursework-tag">Network Analysis</span>
+            <span class="coursework-tag">Basic Electronics</span>
+            <span class="coursework-tag">Digital Electronics</span>
+            <span class="coursework-tag">Programming in C</span>
+            <span class="coursework-tag">Python Programming</span>
+            <span class="coursework-tag">Microcontrollers</span>
+            <span class="coursework-tag">Electrical & Electronic Measurements</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 3. SKILLS SECTION (Technical Skills & Core Competencies) -->
+    <!-- ======================================================================= -->
+    <!-- 
+      PLACEHOLDER: Skills Section
+      Categorizes skills into Programming, Embedded Systems, Electronics, 
+      and Tools/Core Areas from T. Pavan Gowda's resume.
+    -->
+    <section id="skills" class="pixel-section">
+      <div class="section-container">
+        <h2 class="section-title"><span class="title-bracket">&lt;</span> TECHNICAL SKILLS <span class="title-bracket">&gt;</span></h2>
+        
+        <div class="skills-grid">
+          <!-- Programming -->
+          <div class="pixel-card skill-category-card">
+            <div class="card-icon-header">
+              <span class="skill-cat-icon">💻</span>
+              <h3 class="card-title">PROGRAMMING</h3>
+            </div>
+            <div class="skill-tags">
+              <div class="skill-item">
+                <span class="skill-name">C Language</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 85%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Python</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 80%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Embedded Systems -->
+          <div class="pixel-card skill-category-card">
+            <div class="card-icon-header">
+              <span class="skill-cat-icon">🤖</span>
+              <h3 class="card-title">EMBEDDED SYSTEMS</h3>
+            </div>
+            <div class="skill-tags">
+              <div class="skill-item">
+                <span class="skill-name">ESP32</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 90%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Arduino IDE</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 90%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Sensors Integration</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 85%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">IoT Concepts</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 80%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Electronics & Circuits -->
+          <div class="pixel-card skill-category-card">
+            <div class="card-icon-header">
+              <span class="skill-cat-icon">🔌</span>
+              <h3 class="card-title">ELECTRONICS</h3>
+            </div>
+            <div class="skill-tags">
+              <div class="skill-item">
+                <span class="skill-name">Circuit Analysis</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 85%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Microcontrollers</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 85%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Serial Communication</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 80%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Digital Electronics</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 88%;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tools & Core Areas -->
+          <div class="pixel-card skill-category-card">
+            <div class="card-icon-header">
+              <span class="skill-cat-icon">🛠️</span>
+              <h3 class="card-title">TOOLS & CORE</h3>
+            </div>
+            <div class="skill-tags">
+              <div class="skill-item">
+                <span class="skill-name">Network Analysis</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 82%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Electronic Measurements</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 85%;"></div></div>
+              </div>
+              <div class="skill-item">
+                <span class="skill-name">Microsoft Office</span>
+                <div class="skill-level-bar"><div class="skill-level-fill" style="width: 90%;"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 4. TIMELINE SECTION (Education & Academic Milestones) -->
+    <!-- ======================================================================= -->
+    <!-- 
+      PLACEHOLDER: Timeline Section
+      Chronological academic milestones: B.E. (AiT, VTU), PUC, and SSLC.
+    -->
+    <section id="timeline" class="pixel-section">
+      <div class="section-container">
+        <h2 class="section-title"><span class="title-bracket">&lt;</span> EDUCATION & TIMELINE <span class="title-bracket">&gt;</span></h2>
+        
+        <div class="pixel-timeline">
+          <!-- B.E. Degree -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content pixel-card">
+              <div class="timeline-header">
+                <span class="timeline-period">2025 - 2029 (Expected)</span>
+                <span class="timeline-badge score-badge">CGPA: 7.3</span>
+              </div>
+              <h3 class="timeline-title">B.E. – Electronics & Communication Engineering</h3>
+              <p class="timeline-subtitle">Adichunchanagiri Institute of Technology (AiT), Chikkamagaluru | VTU</p>
+              <p class="timeline-desc">
+                Focusing on embedded hardware, digital electronics, microcontrollers, and modern IoT applications.
+              </p>
+            </div>
+          </div>
+
+          <!-- Pre-University (PUC) -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content pixel-card">
+              <div class="timeline-header">
+                <span class="timeline-period">Pre-University (PUC)</span>
+                <span class="timeline-badge score-badge">Score: 83%</span>
+              </div>
+              <h3 class="timeline-title">Pre-University Course</h3>
+              <p class="timeline-subtitle">Harish PU College</p>
+              <p class="timeline-desc">
+                Strong foundation in Physics, Chemistry, and Mathematics.
+              </p>
+            </div>
+          </div>
+
+          <!-- SSLC -->
+          <div class="timeline-item">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content pixel-card">
+              <div class="timeline-header">
+                <span class="timeline-period">SSLC</span>
+                <span class="timeline-badge score-badge">Score: 89%</span>
+              </div>
+              <h3 class="timeline-title">Secondary School Leaving Certificate (10th)</h3>
+              <p class="timeline-subtitle">MES School</p>
+              <p class="timeline-desc">
+                Completed secondary school education with distinction.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 5. PROJECTS SECTION (Embedded Systems & IoT Hardware Projects) -->
+    <!-- ======================================================================= -->
+    <!-- 
+      PLACEHOLDER: Projects Section
+      Detailed engineering projects from T. Pavan Gowda's resume:
+      - ESP32-Based Energy Monitoring & Automation Dashboard
+      - Smart Blind Stick – Assistive Embedded System
+    -->
+    <section id="projects" class="pixel-section">
+      <div class="section-container">
+        <h2 class="section-title"><span class="title-bracket">&lt;</span> FEATURED PROJECTS <span class="title-bracket">&gt;</span></h2>
+        
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="pixel-card project-card">
+            <div class="project-header">
+              <span class="project-type-tag">⚡ EMBEDDED & IOT</span>
+              <span class="project-status-tag">COMPLETED CONCEPT</span>
+            </div>
+            <h3 class="project-title">ESP32-Based Energy Monitoring & Automation Dashboard</h3>
+            <ul class="project-bullets">
+              <li>Designed a concept for real-time monitoring of electrical energy usage using ESP32 and precision current sensing.</li>
+              <li>Planned on/off automation for two appliances with live monitoring and estimated electricity-bill visualization.</li>
+              <li>Integrated sensor data processing with a dashboard-oriented approach for easier, intelligent energy tracking.</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span class="tech-tag">ESP32</span>
+              <span class="tech-tag">Current Sensing</span>
+              <span class="tech-tag">IoT Dashboard</span>
+              <span class="tech-tag">Appliance Automation</span>
+              <span class="tech-tag">Arduino IDE</span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="pixel-card project-card">
+            <div class="project-header">
+              <span class="project-type-tag">🤖 ASSISTIVE SYSTEM</span>
+              <span class="project-status-tag">ACTIVE DEVELOPMENT</span>
+            </div>
+            <h3 class="project-title">Smart Blind Stick – Assistive Embedded System</h3>
+            <ul class="project-bullets">
+              <li>Developing an ESP32-based assistive device using ultrasonic and infrared (IR) sensing for obstacle detection.</li>
+              <li>Includes buzzer-based audio alerts and an SOS/emergency feature concept to ensure user safety.</li>
+              <li>Focused on low-cost embedded hardware design and practical real-world usability for visually impaired individuals.</li>
+            </ul>
+            <div class="project-tech-stack">
+              <span class="tech-tag">ESP32</span>
+              <span class="tech-tag">Ultrasonic Sensors</span>
+              <span class="tech-tag">IR Sensing</span>
+              <span class="tech-tag">Buzzer Alert</span>
+              <span class="tech-tag">SOS Feature</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+    <!-- 6. CONTACT SECTION (Direct Info & Interactive Pixel Message Form) -->
+    <!-- ======================================================================= -->
+    <!-- 
+      PLACEHOLDER: Contact Section
+      Direct links for phone, email, LinkedIn, location, and internship inquiries.
+    -->
+    <section id="contact" class="pixel-section">
+      <div class="section-container">
+        <h2 class="section-title"><span class="title-bracket">&lt;</span> GET IN TOUCH <span class="title-bracket">&gt;</span></h2>
+        
+        <div class="contact-grid">
+          <!-- Contact Coordinates -->
+          <div class="pixel-card contact-info-card">
+            <h3 class="card-title">📫 CONTACT DETAILS</h3>
+            <p class="card-text">
+              Looking for an enthusiastic intern in <strong>Embedded Systems</strong>, <strong>IoT</strong>, or <strong>Electronics</strong>? Feel free to reach out directly:
+            </p>
+
+            <div class="contact-methods">
+              <a href="mailto:pavan.t2517p@gmail.com" class="contact-method-item">
+                <span class="method-icon">✉️</span>
+                <div class="method-info">
+                  <span class="method-label">EMAIL:</span>
+                  <span class="method-value">pavan.t2517p@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="tel:8277740580" class="contact-method-item">
+                <span class="method-icon">📱</span>
+                <div class="method-info">
+                  <span class="method-label">PHONE:</span>
+                  <span class="method-value">+91 8277740580</span>
+                </div>
+              </a>
+
+              <a href="https://linkedin.com/in/pavan-t-gowda-b9a0b239b" target="_blank" rel="noopener noreferrer" class="contact-method-item">
+                <span class="method-icon">💼</span>
+                <div class="method-info">
+                  <span class="method-label">LINKEDIN:</span>
+                  <span class="method-value">pavan-t-gowda-b9a0b239b</span>
+                </div>
+              </a>
+
+              <div class="contact-method-item no-link">
+                <span class="method-icon">📍</span>
+                <div class="method-info">
+                  <span class="method-label">LOCATION:</span>
+                  <span class="method-value">Karnataka, India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Pixel Message Form -->
+          <div class="pixel-card contact-form-card">
+            <h3 class="card-title">✉️ SEND A MESSAGE</h3>
+            <form class="pixel-form" onsubmit="event.preventDefault(); alert('Thank you! Message transmission simulated.');">
+              <div class="form-group">
+                <label for="senderName" class="form-label">YOUR NAME:</label>
+                <input type="text" id="senderName" class="pixel-input" placeholder="e.g. Recruiter Name" required />
+              </div>
+
+              <div class="form-group">
+                <label for="senderEmail" class="form-label">YOUR EMAIL:</label>
+                <input type="email" id="senderEmail" class="pixel-input" placeholder="e.g. recruiter@company.com" required />
+              </div>
+
+              <div class="form-group">
+                <label for="senderMessage" class="form-label">MESSAGE:</label>
+                <textarea id="senderMessage" class="pixel-input pixel-textarea" rows="4" placeholder="Let's discuss an internship or project..." required></textarea>
+              </div>
+
+              <button type="submit" class="pixel-btn pixel-btn-primary form-submit-btn">
+                <span>[ TRANSMIT MESSAGE 🚀 ]</span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================================= -->
+  <footer class="pixel-footer">
+    <div class="footer-container">
+      <div class="footer-info">
+        <p class="footer-copyright">
+          © 2026 T. Pavan Gowda. All Rights Reserved.
+        </p>
+        <p class="footer-tagline">
+          Electronics & Communication Engineering | Adichunchanagiri Institute of Technology (AiT)
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#hero" class="pixel-link">Top ▲</a>
+        <a href="mailto:pavan.t2517p@gmail.com" class="pixel-link">Email</a>
+        <a href="https://linkedin.com/in/pavan-t-gowda-b9a0b239b" target="_blank" rel="noopener noreferrer" class="pixel-link">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Theme Script (Supports prefers-color-scheme media query + manual toggle) -->
+  <script src="script.js"></script>
+</body>
+</html>

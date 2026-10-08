@@ -1,0 +1,1164 @@
+/* ==========================================================================
+   T. PAVAN GOWDA - SOFTWARE ENGINEER PORTFOLIO
+   PIXEL ART STYLESHEET WITH NIGHT MODE (MEDIA QUERY + MANUAL TOGGLE)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS VARIABLES (DESIGN TOKENS)
+   Default / Fallback Theme Variables
+   -------------------------------------------------------------------------- */
+:root {
+  /* Default Theme (Light Theme Variables) */
+  --bg-color: #e8ecf4;
+  --bg-pattern: #d7deeb;
+  --surface-color: #ffffff;
+  --surface-alt: #f1f5f9;
+  --text-main: #121826;
+  --text-secondary: #475569;
+  --text-inverse: #ffffff;
+  
+  --pixel-border: #121826;
+  --pixel-shadow: #000000;
+  --pixel-primary: #3b82f6;
+  --pixel-primary-hover: #2563eb;
+  --pixel-secondary: #10b981;
+  --pixel-secondary-hover: #059669;
+  --pixel-accent: #f59e0b;
+  --pixel-danger: #ef4444;
+  --pixel-highlight: rgba(255, 255, 255, 0.8);
+  
+  --hud-bg: #1e293b;
+  --hud-text: #f8fafc;
+  --hud-border: #0f172a;
+  
+  --hero-overlay: rgba(232, 236, 244, 0.85);
+  --scanline-opacity: 0.04;
+  --font-pixel: 'Press Start 2P', monospace;
+  --font-retro: 'Silkscreen', cursive;
+  --font-body: 'VT323', monospace;
+}
+
+/* --------------------------------------------------------------------------
+   2. SYSTEM PREFERENCES: CSS MEDIA QUERIES FOR NIGHT MODE DETECTION
+   Detects whether user prefers dark or light mode in browser / OS
+   -------------------------------------------------------------------------- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0b0c16;
+    --bg-pattern: #131428;
+    --surface-color: #17182e;
+    --surface-alt: #20223d;
+    --text-main: #f3f4f6;
+    --text-secondary: #94a3b8;
+    --text-inverse: #0b0c16;
+    
+    --pixel-border: #2e3256;
+    --pixel-shadow: #000000;
+    --pixel-primary: #6366f1;
+    --pixel-primary-hover: #4f46e5;
+    --pixel-secondary: #10b981;
+    --pixel-secondary-hover: #059669;
+    --pixel-accent: #f59e0b;
+    --pixel-danger: #f43f5e;
+    --pixel-highlight: rgba(255, 255, 255, 0.15);
+    
+    --hud-bg: #090a14;
+    --hud-text: #e2e8f0;
+    --hud-border: #222543;
+    
+    --hero-overlay: rgba(11, 12, 22, 0.82);
+    --scanline-opacity: 0.18;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. MANUAL OVERRIDE (DATA-THEME SELECTORS)
+   Allows interactive toggle button to switch themes regardless of OS defaults
+   -------------------------------------------------------------------------- */
+[data-theme="light"] {
+  --bg-color: #e8ecf4;
+  --bg-pattern: #d7deeb;
+  --surface-color: #ffffff;
+  --surface-alt: #f1f5f9;
+  --text-main: #121826;
+  --text-secondary: #475569;
+  --text-inverse: #ffffff;
+  
+  --pixel-border: #121826;
+  --pixel-shadow: #000000;
+  --pixel-primary: #3b82f6;
+  --pixel-primary-hover: #2563eb;
+  --pixel-secondary: #10b981;
+  --pixel-secondary-hover: #059669;
+  --pixel-accent: #f59e0b;
+  --pixel-danger: #ef4444;
+  --pixel-highlight: rgba(255, 255, 255, 0.8);
+  
+  --hud-bg: #1e293b;
+  --hud-text: #f8fafc;
+  --hud-border: #0f172a;
+  
+  --hero-overlay: rgba(232, 236, 244, 0.85);
+  --scanline-opacity: 0.04;
+}
+
+[data-theme="dark"] {
+  --bg-color: #0b0c16;
+  --bg-pattern: #131428;
+  --surface-color: #17182e;
+  --surface-alt: #20223d;
+  --text-main: #f3f4f6;
+  --text-secondary: #94a3b8;
+  --text-inverse: #0b0c16;
+  
+  --pixel-border: #2e3256;
+  --pixel-shadow: #000000;
+  --pixel-primary: #6366f1;
+  --pixel-primary-hover: #4f46e5;
+  --pixel-secondary: #10b981;
+  --pixel-secondary-hover: #059669;
+  --pixel-accent: #f59e0b;
+  --pixel-danger: #f43f5e;
+  --pixel-highlight: rgba(255, 255, 255, 0.15);
+  
+  --hud-bg: #090a14;
+  --hud-text: #e2e8f0;
+  --hud-border: #222543;
+  
+  --hero-overlay: rgba(11, 12, 22, 0.82);
+  --scanline-opacity: 0.18;
+}
+
+/* --------------------------------------------------------------------------
+   4. BASE & RESET
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 !important; /* Authentic rigid pixel geometry */
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 20% 20%, var(--bg-pattern) 15%, transparent 16%),
+    radial-gradient(circle at 80% 80%, var(--bg-pattern) 15%, transparent 16%);
+  background-size: 32px 32px;
+  min-height: 100vh;
+  position: relative;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* CRT Scanline Effect (Toggable/Visual polish) */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, var(--scanline-opacity)) 0px,
+    rgba(0, 0, 0, var(--scanline-opacity)) 2px,
+    transparent 2px,
+    transparent 4px
+  );
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. PIXEL COMPONENT UTILITIES (BUTTONS, BORDERS, SHADOWS)
+   -------------------------------------------------------------------------- */
+.pixel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  padding: 12px 18px;
+  background-color: var(--surface-color);
+  color: var(--text-main);
+  border: 4px solid var(--pixel-border);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  text-transform: uppercase;
+}
+
+.pixel-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--pixel-shadow);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+}
+
+.pixel-btn-primary {
+  background-color: var(--pixel-primary);
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.pixel-btn-primary:hover {
+  background-color: var(--pixel-primary-hover);
+}
+
+.pixel-btn-secondary {
+  background-color: var(--pixel-secondary);
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.pixel-btn-secondary:hover {
+  background-color: var(--pixel-secondary-hover);
+}
+
+.pixel-btn-ghost {
+  background-color: var(--surface-color);
+  color: var(--text-main);
+  border-color: var(--pixel-border);
+}
+
+/* --------------------------------------------------------------------------
+   6. HEADER & NAVIGATION
+   -------------------------------------------------------------------------- */
+.pixel-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--surface-color);
+  border-bottom: 4px solid var(--pixel-border);
+  box-shadow: 0 4px 0 var(--pixel-shadow);
+  padding: 12px 24px;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pixel-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  font-weight: bold;
+}
+
+.pixel-icon {
+  font-size: 1.4rem;
+  animation: pulse-bounce 2s infinite ease-in-out;
+}
+
+@keyframes pulse-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.pixel-nav .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  font-family: var(--font-retro);
+  font-size: 0.95rem;
+  padding: 6px 10px;
+  border: 2px solid transparent;
+  color: var(--text-main);
+  transition: all 0.15s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: var(--surface-alt);
+  border-color: var(--pixel-border);
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+  color: var(--pixel-primary);
+}
+
+/* Night Mode Toggle Button */
+.theme-toggle-btn {
+  font-size: 0.7rem;
+  padding: 8px 12px;
+  background-color: var(--surface-alt);
+}
+
+.theme-icon {
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   7. HERO SECTION (Pixel Art Themed + Background Image + Tagline)
+   -------------------------------------------------------------------------- */
+.pixel-hero {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  overflow: hidden;
+  border-bottom: 6px solid var(--pixel-border);
+  box-shadow: 0 6px 0 var(--pixel-shadow);
+
+  /*
+   * USER BACKGROUND IMAGE SUPPORT:
+   * 1. url('hero-bg.png') or url('background.png') (user-provided background image)
+   * 2. Retro pixelated starry sky / cyber grid fallback pattern
+   */
+  background-color: var(--bg-color);
+  background-image: 
+    url('hero-bg.png'),
+    url('hero-bg.svg'),
+    radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  background-size: cover, cover, cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+
+/* Translucent overlay ensuring text readability over any background image */
+.hero-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--hero-overlay);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Retro HUD Banner */
+.retro-hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: var(--hud-bg);
+  color: var(--hud-text);
+  border: 4px solid var(--hud-border);
+  box-shadow: 4px 4px 0px #000;
+  padding: 10px 18px;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.hud-label {
+  color: var(--pixel-accent);
+}
+
+.status-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--pixel-secondary);
+}
+
+.hud-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--pixel-secondary);
+  display: inline-block;
+  box-shadow: 0 0 8px var(--pixel-secondary);
+  animation: blink 1.2s infinite steps(1);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Hero Content & Visual Grid */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.hero-greeting {
+  font-family: var(--font-pixel);
+  font-size: 0.85rem;
+  color: var(--pixel-accent);
+  margin-bottom: 14px;
+  letter-spacing: 1px;
+}
+
+.hero-title {
+  font-family: var(--font-pixel);
+  font-size: 2.2rem;
+  line-height: 1.3;
+  margin-bottom: 18px;
+  color: var(--text-main);
+  text-shadow: 3px 3px 0px var(--pixel-shadow);
+}
+
+.hero-title .highlight {
+  color: var(--pixel-primary);
+  display: inline-block;
+  position: relative;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+  max-width: 600px;
+}
+
+@media (max-width: 900px) {
+  .hero-tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.hero-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 900px) {
+  .hero-badges {
+    justify-content: center;
+  }
+}
+
+.pixel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  background-color: var(--surface-color);
+  border: 3px solid var(--pixel-border);
+  box-shadow: 3px 3px 0px var(--pixel-shadow);
+  color: var(--text-main);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .hero-actions {
+    justify-content: center;
+  }
+}
+
+/* Terminal Frame / Visual Art */
+.pixel-frame {
+  background-color: var(--surface-color);
+  border: 4px solid var(--pixel-border);
+  box-shadow: 8px 8px 0px var(--pixel-shadow);
+  padding: 0;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.frame-header {
+  background-color: var(--pixel-border);
+  color: #ffffff;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+}
+
+.window-dot {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+
+.window-dot.red { background-color: var(--pixel-danger); }
+.window-dot.yellow { background-color: var(--pixel-accent); }
+.window-dot.green { background-color: var(--pixel-secondary); }
+
+.frame-title {
+  margin-left: auto;
+  letter-spacing: 1px;
+}
+
+.frame-body {
+  padding: 24px;
+  background-color: var(--surface-alt);
+}
+
+/* Profile Photo & Pixel Avatar Frame */
+.pixel-avatar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.avatar-photo-frame {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background-color: var(--surface-color);
+  border: 4px solid var(--pixel-border);
+  box-shadow: 
+    4px 4px 0px var(--pixel-shadow),
+    inset 0 0 0 2px var(--pixel-highlight);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.pixel-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.avatar-photo-frame:hover .pixel-avatar-img {
+  transform: scale(1.05);
+}
+
+.avatar-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.avatar-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  background-color: var(--pixel-primary);
+  color: #ffffff;
+  padding: 4px 8px;
+  border: 2px solid #000000;
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+}
+
+.avatar-name {
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  color: var(--text-main);
+  letter-spacing: 1px;
+}
+
+.terminal-stats {
+  margin-bottom: 18px;
+}
+
+.stat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  gap: 10px;
+}
+
+.stat-name {
+  color: var(--text-main);
+  min-width: 70px;
+}
+
+.stat-bar {
+  flex-grow: 1;
+  height: 14px;
+  background-color: #000000;
+  border: 2px solid var(--pixel-border);
+}
+
+.stat-fill {
+  height: 100%;
+  background-color: var(--pixel-secondary);
+}
+
+.terminal-prompt {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--pixel-accent);
+  animation: flicker 1s infinite alternate;
+}
+
+@keyframes flicker {
+  from { opacity: 0.8; }
+  to { opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   8. CORE SECTION LAYOUTS & PIXEL CARDS
+   -------------------------------------------------------------------------- */
+.pixel-section {
+  padding: 80px 24px;
+  border-bottom: 4px solid var(--pixel-border);
+}
+
+.section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-pixel);
+  font-size: 1.5rem;
+  margin-bottom: 36px;
+  color: var(--text-main);
+  text-shadow: 2px 2px 0px var(--pixel-shadow);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title-bracket {
+  color: var(--pixel-primary);
+}
+
+.pixel-card {
+  background-color: var(--surface-color);
+  border: 4px solid var(--pixel-border);
+  box-shadow: 6px 6px 0px var(--pixel-shadow);
+  padding: 24px;
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.pixel-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--pixel-shadow);
+}
+
+.card-title {
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-text {
+  font-family: var(--font-body);
+  font-size: 1.35rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   8.1 ABOUT SECTION STYLES
+   -------------------------------------------------------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 28px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 860px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-quick-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pill-item {
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  background-color: var(--surface-alt);
+  border: 2px solid var(--pixel-border);
+  color: var(--text-main);
+}
+
+.pixel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pixel-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.coursework-box {
+  background-color: var(--surface-color);
+  border: 4px solid var(--pixel-border);
+  box-shadow: 4px 4px 0px var(--pixel-shadow);
+  padding: 20px 24px;
+}
+
+.coursework-title {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  color: var(--pixel-accent);
+  margin-bottom: 12px;
+}
+
+.coursework-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.coursework-tag {
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  background-color: var(--surface-alt);
+  border: 2px solid var(--pixel-border);
+  padding: 6px 12px;
+  color: var(--text-main);
+}
+
+/* --------------------------------------------------------------------------
+   8.2 SKILLS SECTION STYLES
+   -------------------------------------------------------------------------- */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.card-icon-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--pixel-border);
+  padding-bottom: 10px;
+}
+
+.skill-cat-icon {
+  font-size: 1.3rem;
+}
+
+.skill-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.skill-name {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--text-main);
+}
+
+.skill-level-bar {
+  width: 100%;
+  height: 12px;
+  background-color: #000000;
+  border: 2px solid var(--pixel-border);
+}
+
+.skill-level-fill {
+  height: 100%;
+  background-color: var(--pixel-primary);
+}
+
+/* --------------------------------------------------------------------------
+   8.3 TIMELINE SECTION STYLES
+   -------------------------------------------------------------------------- */
+.pixel-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  padding-left: 30px;
+  border-left: 4px dashed var(--pixel-border);
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-marker {
+  position: absolute;
+  left: -38px;
+  top: 18px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--pixel-primary);
+  border: 3px solid #000000;
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.timeline-period {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--pixel-accent);
+}
+
+.score-badge {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  padding: 4px 8px;
+  background-color: var(--pixel-secondary);
+  color: #ffffff;
+  border: 2px solid #000000;
+}
+
+.timeline-title {
+  font-family: var(--font-pixel);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.timeline-subtitle {
+  font-family: var(--font-retro);
+  font-size: 0.95rem;
+  color: var(--pixel-primary);
+  margin-bottom: 8px;
+}
+
+.timeline-desc {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   8.4 PROJECTS SECTION STYLES
+   -------------------------------------------------------------------------- */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.project-type-tag {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--pixel-primary);
+}
+
+.project-status-tag {
+  font-family: var(--font-retro);
+  font-size: 0.75rem;
+  background-color: var(--surface-alt);
+  border: 2px solid var(--pixel-border);
+  padding: 3px 8px;
+  color: var(--pixel-accent);
+}
+
+.project-title {
+  font-family: var(--font-pixel);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--text-main);
+  margin-bottom: 14px;
+}
+
+.project-bullets {
+  list-style: disc;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.project-bullets li {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.project-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 2px dashed var(--pixel-border);
+  padding-top: 14px;
+}
+
+.tech-tag {
+  font-family: var(--font-retro);
+  font-size: 0.8rem;
+  background-color: var(--surface-alt);
+  border: 2px solid var(--pixel-border);
+  padding: 4px 8px;
+  color: var(--text-main);
+}
+
+/* --------------------------------------------------------------------------
+   8.5 CONTACT SECTION STYLES
+   -------------------------------------------------------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+@media (max-width: 800px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.contact-method-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background-color: var(--surface-alt);
+  border: 3px solid var(--pixel-border);
+  padding: 12px 16px;
+  transition: transform 0.1s ease;
+}
+
+.contact-method-item:hover:not(.no-link) {
+  transform: translate(2px, -2px);
+  border-color: var(--pixel-primary);
+}
+
+.method-icon {
+  font-size: 1.5rem;
+}
+
+.method-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.method-label {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--pixel-accent);
+}
+
+.method-value {
+  font-family: var(--font-retro);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  word-break: break-all;
+}
+
+.pixel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
+  color: var(--text-main);
+}
+
+.pixel-input {
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  padding: 10px 14px;
+  background-color: var(--surface-alt);
+  border: 3px solid var(--pixel-border);
+  color: var(--text-main);
+  outline: none;
+}
+
+.pixel-input:focus {
+  border-color: var(--pixel-primary);
+  background-color: var(--surface-color);
+}
+
+.pixel-textarea {
+  resize: vertical;
+}
+
+.form-submit-btn {
+  width: 100%;
+  margin-top: 8px;
+}
+
+/* --------------------------------------------------------------------------
+   9. FOOTER
+   -------------------------------------------------------------------------- */
+.pixel-footer {
+  background-color: var(--surface-color);
+  border-top: 4px solid var(--pixel-border);
+  padding: 32px 24px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  font-family: var(--font-pixel);
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.footer-tagline {
+  font-family: var(--font-retro);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.pixel-link {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--pixel-primary);
+  padding: 6px 10px;
+  border: 2px solid var(--pixel-border);
+  background-color: var(--surface-alt);
+  box-shadow: 2px 2px 0px var(--pixel-shadow);
+}
+
+.pixel-link:hover {
+  background-color: var(--pixel-primary);
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   10. RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  .section-title {
+    font-size: 1.2rem;
+  }
+  .retro-hud {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pixel-btn {
+    width: 100%;
+  }
+}
